@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Passenger</title>
+    <!-- Add your CSS links or stylesheets here -->
+    <style>
+        /* Add your custom styles here */
+        body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f0f0; /* Warna latar belakang yang lembut */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+form {
+    background-color: #7c8c7a; /* Warna latar belakang yang lebih lembut */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #444; /* Warna label yang lebih gelap */
+}
+
+input {
+    width: 100%;
+    padding: 10px; /* Penyesuaian ukuran padding */
+    margin-bottom: 12px;
+    box-sizing: border-box;
+    border: 1px solid #aaa; /* Warna border yang lebih lembut */
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.error {
+    color: #ff4d4d; /* Warna merah yang lebih cerah */
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+input[type="submit"] {
+    background-color: #4c6374; /* Warna tombol yang lebih gelap */
+    color: #fff; /* Warna teks pada tombol */
+    border: none;
+    padding: 12px; /* Penyesuaian ukuran padding */
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Efek transisi ketika disorot */
+}
+
+input[type="submit"]:hover {
+    background-color: #2a3a4a; /* Warna tombol saat disorot */
+}
+    </style>
+</head>
+
+<body>
+    <form action="#" th:action="@{/passengers}" th:object="${passenger}" method="post">
+        <table>
+            <tr>
+                <td><label for="passId">PASS ID</label></td>
+                <td><input type="text" th:field="*{passId}" id="passId" placeholder="PASS ID"></td>
+            </tr>
+            <tr>
+                <td><label for="passengerName">Passenger name</label></td>
+                <td><input type="text" th:field="*{passengerName}" id="e" placeholder="Passenger name"></td>
+                <td th:if="${#fields.hasErrors('passengerName')}" th:errors="*{passengerName}" class="error"></td>
+            </tr>
+            <tr>
+                <td> <label for="address">Address</label></td>
+                <td> <input type="text" th:field="*{address}" id="address" placeholder="Address"></td>
+    
+            </tr>
+            <tr>
+                <td> <label for="phoneNumber">Phone Number</label></td>
+                <td> <input type="text" th:field="*{phoneNumber}" id="phoneNumber" placeholder="Phone Number"></td>
+    
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="Update Passenger"></td>
+            </tr>
+        </table>
+    </form>
+    <!-- Add your JavaScript scripts or links here -->
+</body>
+
+</html>

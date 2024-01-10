@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bus Website</title>
+    <link th:href="@{/css/main.css}" rel="stylesheet" />
+    <!-- Add additional style links or meta tags here if needed -->
+    <style>
+        /* Add your custom styles here */
+        body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f0f0; /* Warna latar belakang yang lembut */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+form {
+    background-color: #7c8c7a; /* Warna latar belakang yang lebih lembut */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #444; /* Warna label yang lebih gelap */
+}
+
+input {
+    width: 100%;
+    padding: 10px; /* Penyesuaian ukuran padding */
+    margin-bottom: 12px;
+    box-sizing: border-box;
+    border: 1px solid #aaa; /* Warna border yang lebih lembut */
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.error {
+    color: #ff4d4d; /* Warna merah yang lebih cerah */
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+input[type="submit"] {
+    background-color: #4c6374; /* Warna tombol yang lebih gelap */
+    color: #fff; /* Warna teks pada tombol */
+    border: none;
+    padding: 12px; /* Penyesuaian ukuran padding */
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Efek transisi ketika disorot */
+}
+
+input[type="submit"]:hover {
+    background-color: #2a3a4a; /* Warna tombol saat disorot */
+}
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <h2></h2>
+        </div>
+
+        <form th:action="@{/login}" method="post">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required/>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required/>
+
+            <input type="submit" value="Sign In"/>
+        </form>
+
+        <div th:if="${param.error}" class="message">
+            Invalid username and password.
+        </div>
+        <div th:if="${param.logout}" class="message">
+            You have been logged out.
+        </div>
+    </div>
+</body>
+</html>
