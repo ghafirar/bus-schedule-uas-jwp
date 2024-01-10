@@ -1,0 +1,100 @@
+<head>
+    <meta charset="UTF-8">
+    <title>Bus Gavin Website</title>
+    <link th:href="@{/css/main.css}" rel="stylesheet" />
+</head>
+<style>
+    /* Add your custom styles here */
+    body {
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+background-color: #f0f0f0; /* Warna latar belakang yang lembut */
+margin: 0;
+padding: 0;
+display: flex;
+align-items: center;
+justify-content: center;
+height: 100vh;
+}
+
+form {
+background-color: #7c8c7a; /* Warna latar belakang yang lebih lembut */
+padding: 20px;
+border-radius: 8px;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+width: 300px;
+}
+
+label {
+display: block;
+margin-bottom: 8px;
+color: #444; /* Warna label yang lebih gelap */
+}
+
+input {
+width: 100%;
+padding: 10px; /* Penyesuaian ukuran padding */
+margin-bottom: 12px;
+box-sizing: border-box;
+border: 1px solid #aaa; /* Warna border yang lebih lembut */
+border-radius: 4px;
+font-size: 14px;
+}
+
+.error {
+color: #ff4d4d; /* Warna merah yang lebih cerah */
+font-size: 12px;
+margin-top: 4px;
+}
+
+input[type="submit"] {
+background-color: #4c6374; /* Warna tombol yang lebih gelap */
+color: #fff; /* Warna teks pada tombol */
+border: none;
+padding: 12px; /* Penyesuaian ukuran padding */
+border-radius: 4px;
+cursor: pointer;
+transition: background-color 0.3s; /* Efek transisi ketika disorot */
+}
+
+input[type="submit"]:hover {
+background-color: #2a3a4a; /* Warna tombol saat disorot */
+}
+</style>
+<form action="#" th:action="@{/buss}" th:object="${bus}" method="post">
+    <table>
+        <tr>
+            <td> <label for="code">CODE</label></td>
+            <td> <input type="text" th:field="*{code}" id="code" placeholder="CODE"></td>
+        </tr>
+        <tr>
+            <td> <label for="busName">Bus name</label></td>
+            <td> <input type="text" th:field="*{busName}" id="busName" placeholder="Bus name"></td>
+            <td th:if="${#fields.hasErrors('busName')}" th:errors="*{busName}" class="error"></td>
+
+        </tr>
+        <tr>
+            <td> <label for="busSchedule">Bus Schedule</label></td>
+            <td> <input type="date" th:field="*{busSchedule}" id="busSchedule" placeholder="Date of birth"></td>
+            <td th:if="${#fields.hasErrors('busSchedule')}" th:errors="*{bus Schedule}" class="error"></td>
+
+        </tr>
+        <tr>
+            <td> <label for="bus route">Bus Route</label></td>
+            <td> <input type="text" th:field="*{busRoute}" id="bus route" placeholder="Bus route"></td>
+
+        </tr>
+        <tr>
+            <td> <input type="submit" value="Add Bus"></td>
+
+        </tr>
+        <tr>
+            <div th:if="${#fields.hasErrors('global')}">
+                <h3>errors:</h3>
+                <p th:each="err : ${#fields.errors('global')}" th:text="${err}" class="error" />
+            </div>
+        </tr>
+
+    </table>
+
+
+</form>
