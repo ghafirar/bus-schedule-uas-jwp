@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Schedule</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #aaa;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #4c6374;
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #e0e0e0;
+        }
+
+        a {
+            text-decoration: none;
+            color: #333;
+            margin-right: 10px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        input[type="submit"] {
+            background-color: #4c6374;
+            color: #fff;
+            border: none;
+            padding: 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #2a3a4a;
+        }
+
+        /* Centering the title */
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div th:switch="${buss}">
+        <div th:case="*">
+            <h2>Bus Gavin Schedule</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Bus Name</th>
+                        <th>Bus Schedule</th>
+                        <th>Bus Route</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="bus : ${buss}">
+                        <td th:text="${bus.code}"></td>
+                        <td th:text="${bus.busName}"></td>
+                        <td th:text="${#dates.format(bus.busSchedule, 'dd-MMM-yyyy')}"></td>
+                        <td th:text="${bus.busRoute}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>      
+    </div>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
+</body>
+</html>
